@@ -1,0 +1,151 @@
+<odoo>
+  <data>
+
+    <record id="student_search_view" model="ir.ui.view">
+      <field name="name">student.search.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="partner_id" />
+          <field name="birthdate" />
+          <field name="tuition"
+            filter_domain="['|',('tuition', 'ilike', self), ('tuition', '=', self)]" />
+          <field name="teacher" />
+          <field name="teacher_assistant" />
+          <group expand="0" string="School info">
+            <filter name="virtual_modality" string="Modalidad virtual"
+              domain="[('modality', '=' , 'virtual')]" />
+            <filter name="modality" string="Modalidad" domain="[('modality', '=' , 'self')]"
+              context="{'group_by':'modality'}" />
+            <filter name="carreers" string="Carrera" domain="[('carreers', '=' , 'self')]"
+              context="{'group_by':'carreers'}" />
+          </group>
+          <group expand="0" string="School info">
+            <filter name="city" string="Ciudad" domain="[('city','=','self')]" context="{'group_by':'city'}"/>
+            <filter name="state_id" string="Provincia" domain="[('state_id', '=' , 'self')]"
+              context="{'group_by':'state_id'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="student_tree_view" model="ir.ui.view">
+      <field name="name">student.tree.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="partner_id" />
+          <field name="teacher" />
+          <field name="teacher_assistant" />
+          <field name="carreers" />
+          <field name="modality" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="student_form_view" model="ir.ui.view">
+      <field name="name">student.form.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+
+        <form>
+          <header>
+            <button class="btn btn-primary" type="object" string="Cursando"
+              name="action_ongoing"
+              invisible="state != 'draft'" />
+            <button class="btn btn-primary" type="object" string="Finalizado" name="action_done"
+              invisible="state != 'ongoing'" />
+            <button class="btn" type="object" string="Expulsado"
+              name="action_expelled"
+              invisible="state != 'ongoing'" />
+            <button class="btn" type="object" string="Abandonado"
+              name="action_expelled"
+              invisible="state != 'ongoing'" />
+            <button type="object" string="Volver a borrador" name="action_draft"
+              invisible="state != 'done','expelled','abandoned'" />
+            <field widget="statusbar" readonly="0" name="state"
+              statusbar_visible="draft, ongoing, done, abandoned, expelled" />
+          </header>
+          <sheet>
+            <field name="tuition" class="fs-1 mb-2" placeholder="Matrícula"
+              readonly="state in 'done'" />
+            <group>
+              <group class="">
+                <field name="partner_id" readonly="state in 'done'" />
+              </group>
+              <group>
+                <field name="course" readonly="state in 'done'" />
+              </group>
+              <group>
+                <field name="carreers" readonly="state in 'done'" />
+              </group>
+
+            </group>
+            <notebook>
+              <page string="Datos personales">
+                <group>
+
+                  <group>
+                    <field name="street" />
+                    <field name="zip" />
+                    <field name="city" />
+                    <field name="state_id" />
+                    <field name="country_id" />
+                  </group>
+                  <group>
+                    <field name="phone" />
+                    <field name="mobile" />
+                    <field name="email" />
+                  </group>
+                </group>
+              </page>
+              <page string="Materias">
+                <field name="subjects" />
+                <!-- <button type="object" class="btn btn-danger" string="Hola como andas capo"
+                  name="action_hola_como_andas" /> -->
+              </page>
+              <page string="Profesores">
+                <group>
+                  <field name="teacher" />
+                  <field name="teacher_assistant" />
+                </group>
+              </page>
+              <page string="Más información">
+                <group>
+                  <field name="final_project" string="Proyecto final" />
+                </group>
+                <group>
+                  <field name="tag" widget="many2many_tags" readonly="state in 'done'" />
+                </group>
+                <group>
+                  <field name="estimated_graduate_date" />
+                </group>
+                <group>
+                  <field name="modality" />
+                </group>
+                <group>
+                  <field name="active" />
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field widget="mail_thread" name="message_ids" />
+            <field widget="mail_activity" name="activity_ids" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="student_action" model="ir.actions.act_window">
+      <field name="name">Estudiantes</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_school" name="School" />
+    <menuitem id="menu_student_list" name="Estudiantes" parent="menu_school"
+      action="student_action" />
+  </data>
+</odoo>
