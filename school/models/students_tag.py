@@ -6,3 +6,4 @@ class StudentTag(models.Model):
 
     name = fields.Char(string="Etiquetas", required=True)
     description = fields.Text(string="Descripción")
+    color = fields.Integer(string="Color")

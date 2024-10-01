@@ -12,16 +12,22 @@
             filter_domain="['|',('tuition', 'ilike', self), ('tuition', '=', self)]" />
           <field name="teacher" />
           <field name="teacher_assistant" />
+          <field name="tag" />
           <group expand="0" string="School info">
-            <filter name="virtual_modality" string="Modalidad virtual"
+            <filter name="virtual_modality" string="Virtual"
               domain="[('modality', '=' , 'virtual')]" />
+              <filter name="insitu_modality" string="Presencial"
+              domain="[('modality', '=' , 'insitu')]" />
+              <filter name="insitu_modality" string="Archivados"
+              domain="[('active', '!=' , 'true')]" />
             <filter name="modality" string="Modalidad" domain="[('modality', '=' , 'self')]"
               context="{'group_by':'modality'}" />
             <filter name="carreers" string="Carrera" domain="[('carreers', '=' , 'self')]"
               context="{'group_by':'carreers'}" />
           </group>
           <group expand="0" string="School info">
-            <filter name="city" string="Ciudad" domain="[('city','=','self')]" context="{'group_by':'city'}"/>
+            <filter name="city" string="Ciudad" domain="[('city','=','self')]"
+              context="{'group_by':'city'}" />
             <filter name="state_id" string="Provincia" domain="[('state_id', '=' , 'self')]"
               context="{'group_by':'state_id'}" />
           </group>
@@ -67,8 +73,12 @@
               statusbar_visible="draft, ongoing, done, abandoned, expelled" />
           </header>
           <sheet>
+            <div class="d-flex justify-content-between">
             <field name="tuition" class="fs-1 mb-2" placeholder="Matrícula"
               readonly="state in 'done'" />
+              <field name="image" widget="image" class="oe_avatar"
+              readonly="state in 'done'" />
+            </div>
             <group>
               <group class="">
                 <field name="partner_id" readonly="state in 'done'" />
@@ -115,7 +125,8 @@
                   <field name="final_project" string="Proyecto final" />
                 </group>
                 <group>
-                  <field name="tag" widget="many2many_tags" readonly="state in 'done'" />
+                  <field name="tag" widget="many2many_tags" readonly="state in 'done'"
+                    options="{'color_field': 'color'}" />
                 </group>
                 <group>
                   <field name="estimated_graduate_date" />
@@ -137,11 +148,59 @@
       </field>
     </record>
 
+    <record id="student_kanban_view" model="ir.ui.view">
+      <field name="name">school.kanban.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile" sample="1">
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="row">
+                  <div class="col-12">
+                    <strong>
+                      <div>
+                        <field name="name" />
+                      </div>
+                    </strong>
+                    <div>
+                      <field name="carreers" />
+                    </div>
+
+                  </div>
+                </div>
+                <div>
+                  <hr class="my-2" />
+                    <strong>Matrícula</strong>: <field name="tuition" />
+                </div>
+                <div>
+                  <field name="city" />, <field name="state_id" />, <field name="country_id" />  
+                  <field
+                    class="mt-2" name="tag" />
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="student_pivot_view" model="ir.ui.view">
+      <field name="name">student.pivot.view</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <pivot>
+          <!-- Campos para usar en filas y columnas -->
+
+        </pivot>
+      </field>
+    </record>
+
 
     <record id="student_action" model="ir.actions.act_window">
       <field name="name">Estudiantes</field>
       <field name="res_model">school.student</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">search,tree,form,kanban,pivot</field>
     </record>
 
     <menuitem id="menu_school" name="School" />

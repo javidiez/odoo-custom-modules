@@ -9,6 +9,7 @@ class Student(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Nombre")
     name = fields.Char(related='partner_id.name', string="Nombre", store=True)
+    image = fields.Binary(related='partner_id.image_1920', string="Imagen", store=True)
     phone = fields.Char(related='partner_id.phone', string="Teléfono", store=True)
     mobile = fields.Char(related='partner_id.mobile', string="Móvil", store=True)
     street = fields.Char(related='partner_id.street', string="Dirección", store=True)
@@ -57,13 +58,3 @@ class Student(models.Model):
 
     def action_expelled(self):
         self.state = "expelled"
-
-    def action_hola_como_andas(self):
-        # Aquí puedes definir la lógica que quieras cuando se presiona el botón
-        return {
-            'effect': {
-                'fadeout': 'slow',
-                'message': "Hola como andas maestro!",
-                'type': 'rainbow_man',
-            }
-        }
