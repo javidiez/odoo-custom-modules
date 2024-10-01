@@ -16,9 +16,9 @@
           <group expand="0" string="School info">
             <filter name="virtual_modality" string="Virtual"
               domain="[('modality', '=' , 'virtual')]" />
-              <filter name="insitu_modality" string="Presencial"
+            <filter name="insitu_modality" string="Presencial"
               domain="[('modality', '=' , 'insitu')]" />
-              <filter name="insitu_modality" string="Archivados"
+            <filter name="insitu_modality" string="Archivados"
               domain="[('active', '!=' , 'true')]" />
             <filter name="modality" string="Modalidad" domain="[('modality', '=' , 'self')]"
               context="{'group_by':'modality'}" />
@@ -65,19 +65,19 @@
               name="action_expelled"
               invisible="state != 'ongoing'" />
             <button class="btn" type="object" string="Abandonado"
-              name="action_expelled"
+              name="action_abandoned"
               invisible="state != 'ongoing'" />
             <button type="object" string="Volver a borrador" name="action_draft"
-              invisible="state != 'done','expelled','abandoned'" />
+              invisible="state not in ('done','expelled','abandoned')" />
             <field widget="statusbar" readonly="0" name="state"
               statusbar_visible="draft, ongoing, done, abandoned, expelled" />
           </header>
           <sheet>
             <div class="d-flex justify-content-between">
-            <field name="tuition" class="fs-1 mb-2" placeholder="Matrícula"
-              readonly="state in 'done'" />
+              <field name="tuition" class="fs-1 mb-2" placeholder="Matrícula"
+                readonly="state in 'done'" />
               <field name="image" widget="image" class="oe_avatar"
-              readonly="state in 'done'" />
+                readonly="state in 'done'" />
             </div>
             <group>
               <group class="">
@@ -88,6 +88,9 @@
               </group>
               <group>
                 <field name="carreers" readonly="state in 'done'" />
+              </group>
+              <group>
+                <field name="estimated_graduate_date" />
               </group>
 
             </group>
@@ -106,6 +109,7 @@
                     <field name="phone" />
                     <field name="mobile" />
                     <field name="email" />
+                    <field name="alias" />
                   </group>
                 </group>
               </page>
@@ -127,9 +131,6 @@
                 <group>
                   <field name="tag" widget="many2many_tags" readonly="state in 'done'"
                     options="{'color_field': 'color'}" />
-                </group>
-                <group>
-                  <field name="estimated_graduate_date" />
                 </group>
                 <group>
                   <field name="modality" />
@@ -195,7 +196,6 @@
         </pivot>
       </field>
     </record>
-
 
     <record id="student_action" model="ir.actions.act_window">
       <field name="name">Estudiantes</field>

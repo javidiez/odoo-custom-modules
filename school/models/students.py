@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import _, models, fields, api
+from odoo.exceptions import ValidationError
 
 class Student(models.Model):
     _name = "school.student"
     _description = "Tabla de estudiantes"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    partner_id = fields.Many2one('res.partner', string="Nombre")
+    partner_id = fields.Many2one('res.partner', string="Nombre", required=True)
     name = fields.Char(related='partner_id.name', string="Nombre", store=True)
+    alias = fields.Char(related='partner_id.alias', string="Apodo", store=True, readonly=False)
     image = fields.Binary(related='partner_id.image_1920', string="Imagen", store=True)
     phone = fields.Char(related='partner_id.phone', string="Teléfono", store=True)
     mobile = fields.Char(related='partner_id.mobile', string="Móvil", store=True)
@@ -18,7 +20,7 @@ class Student(models.Model):
     state_id= fields.Many2one(related='partner_id.state_id', string="Provincia", store=True)
     email = fields.Char(related='partner_id.email', string="Email", store=True)
     zip = fields.Char(related='partner_id.zip', string="C.P.", store=True)
-    tuition = fields.Char(string="Matrícula", copy=False, tracking=20)
+    tuition = fields.Char(string="Matrícula", copy=False, tracking=20, required=True)
     birthdate = fields.Date(string="Fecha de nacimiento")
     inscription_date = fields.Date(string="Fecha de inscripción")
     carreers = fields.Many2one('school.carreers',string="Carrera", required=True)
@@ -58,3 +60,26 @@ class Student(models.Model):
 
     def action_expelled(self):
         self.state = "expelled"
+
+    # @api.depends('alias')
+    # def _inverse_alias(self):
+    #     for student in self:
+    #         if student.partner_id:
+    #             student.partner_id.alias = student.alias
+
+    # @api.onchange('alias')
+    # def _onchange_alias(self):
+    #     for record in self:
+    #         if record.alias and len(record.alias) > 7:
+    #             return {
+    #                 'warning': {
+    #                     'title': _("Mensaje"),
+    #                     'message': _('Se recomienda que el apodo sea corto')
+    #                 }
+    #             }
+                
+    @api.constrains('tuition')
+    def _check_unique_tuition(self):
+        for record in self:
+            if self.search_count([('tuition','=', record.tuition), ('id', '!=', record.id)]) > 0:
+                raise ValidationError('La matrícula debe ser única')

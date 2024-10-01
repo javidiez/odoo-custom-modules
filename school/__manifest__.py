@@ -28,6 +28,7 @@ Long description of module's purpose
         'views/students_tag.xml',
         'views/carreers.xml',
         'views/subjects.xml',
+        'views/alias_partner.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
