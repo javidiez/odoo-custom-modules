@@ -49,11 +49,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="carreer_menu"
-            name="Carreras"
-            action="carreer_action"
-            parent="menu_school"
-        />
+
 
     </data>
 </odoo>

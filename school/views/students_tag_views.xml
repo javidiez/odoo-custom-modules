@@ -43,12 +43,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="student_tag_menu"
-            name="Etiquetas"
-            action="student_tag_action"
-            parent="menu_school"
-            sequence="100"
-        />
 
     </data>
 </odoo>

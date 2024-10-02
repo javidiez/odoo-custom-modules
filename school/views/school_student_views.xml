@@ -39,12 +39,13 @@
       <field name="name">student.tree.view</field>
       <field name="model">school.student</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-success="state=='done'">
           <field name="partner_id" />
           <field name="teacher" />
           <field name="teacher_assistant" />
           <field name="carreers" />
           <field name="modality" />
+          <field name="state" invisible="1" />
         </tree>
       </field>
     </record>
@@ -73,9 +74,15 @@
               statusbar_visible="draft, ongoing, done, abandoned, expelled" />
           </header>
           <sheet>
+
             <div class="d-flex justify-content-between">
-              <field name="tuition" class="fs-1 mb-2" placeholder="Matrícula"
-                readonly="state in 'done'" />
+              <div>
+                <label for="tuition" string="Matrícula" />
+                <div>
+                  <field name="tuition" class="fs-1 mb-4"
+                    readonly="state in 'done'" />
+                </div>
+              </div>
               <field name="image" widget="image" class="oe_avatar"
                 readonly="state in 'done'" />
             </div>
@@ -84,7 +91,8 @@
                 <field name="partner_id" readonly="state in 'done'" />
               </group>
               <group>
-                <field name="course" readonly="state in 'done'" />
+                <field name="course" readonly="state in 'done'"
+                  help="Completa solo el número del curso" />
               </group>
               <group>
                 <field name="carreers" readonly="state in 'done'" />
@@ -109,7 +117,7 @@
                     <field name="phone" />
                     <field name="mobile" />
                     <field name="email" />
-                    <field name="alias" />
+                    <field name="alias" decoration-danger="alias" />
                   </group>
                 </group>
               </page>
@@ -203,8 +211,6 @@
       <field name="view_mode">search,tree,form,kanban,pivot</field>
     </record>
 
-    <menuitem id="menu_school" name="School" />
-    <menuitem id="menu_student_list" name="Estudiantes" parent="menu_school"
-      action="student_action" />
+
   </data>
 </odoo>

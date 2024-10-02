@@ -46,11 +46,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="subjects_menu"
-            name="Materias"
-            action="subjects_action"
-            parent="menu_school"
-        />
+
 
     </data>
 </odoo>

@@ -24,11 +24,12 @@ Long description of module's purpose
     'imagens': ['static/description/icon.png'],
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/students_tag.xml',
-        'views/carreers.xml',
-        'views/subjects.xml',
-        'views/alias_partner.xml',
+        'views/school_student_views.xml',
+        'views/students_tag_views.xml',
+        'views/carreers_views.xml',
+        'views/subjects_views.xml',
+        'views/alias_partner_views.xml',
+        'views/school_student_menus.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

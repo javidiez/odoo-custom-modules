@@ -7,6 +7,7 @@ class Student(models.Model):
     _name = "school.student"
     _description = "Tabla de estudiantes"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order ="name asc"
 
     partner_id = fields.Many2one('res.partner', string="Nombre", required=True)
     name = fields.Char(related='partner_id.name', string="Nombre", store=True)
