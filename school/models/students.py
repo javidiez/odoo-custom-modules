@@ -22,7 +22,6 @@ class Student(models.Model):
     email = fields.Char(related='partner_id.email', string="Email", store=True)
     zip = fields.Char(related='partner_id.zip', string="C.P.", store=True)
     tuition = fields.Char(string="Matrícula", copy=False, tracking=20, required=True)
-    birthdate = fields.Date(string="Fecha de nacimiento")
     inscription_date = fields.Date(string="Fecha de inscripción")
     carreers = fields.Many2one('school.carreers',string="Carrera", required=True)
     subjects = fields.Many2many('school.subjects')
@@ -35,6 +34,7 @@ class Student(models.Model):
                                         ('insitu', 'Presencial'),
                                         ], string="Modalidad", default="virtual")
     estimated_graduate_date = fields.Date(string="Fecha estimada de gradución")
+    graduate_date = fields.Date(string="Fecha de gradución")
     beca = fields.Char(string="Beca")
     final_project = fields.Char(string="Proyecto final")
     active = fields.Boolean(string="Activo", default=True)
@@ -78,9 +78,13 @@ class Student(models.Model):
     #                     'message': _('Se recomienda que el apodo sea corto')
     #                 }
     #             }
-                
-    @api.constrains('tuition')
-    def _check_unique_tuition(self):
+
+    @api.constrains('estimated_graduate_date')
+    def _estimated_graduate_date_no_past(self):
         for record in self:
-            if self.search_count([('tuition','=', record.tuition), ('id', '!=', record.id)]) > 0:
-                raise ValidationError('La matrícula debe ser única')
+            if record.estimated_graduate_date < fields.Date.today():
+                raise ValidationError('La fecha no puede ser anterior a hoy')
+
+    _sql_constraints = [
+        ('check_tuition', 'UNIQUE(tuition)', 'La matrícula debe ser únicaaa')
+    ]

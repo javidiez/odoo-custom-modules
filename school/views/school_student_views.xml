@@ -7,7 +7,6 @@
       <field name="arch" type="xml">
         <search>
           <field name="partner_id" />
-          <field name="birthdate" />
           <field name="tuition"
             filter_domain="['|',('tuition', 'ilike', self), ('tuition', '=', self)]" />
           <field name="teacher" />
@@ -134,6 +133,12 @@
               </page>
               <page string="Más información">
                 <group>
+                  <field name="inscription_date" string="Fecha de inscripción" />
+                </group>
+                <group>
+                  <field name="graduate_date" />
+                </group>
+                <group>
                   <field name="final_project" string="Proyecto final" />
                 </group>
                 <group>
@@ -186,6 +191,7 @@
                   <field name="city" />, <field name="state_id" />, <field name="country_id" />  
                   <field
                     class="mt-2" name="tag" />
+                    <field name="activity_ids" widget="kanban_activity"/>
                 </div>
               </div>
             </t>
