@@ -61,10 +61,10 @@
               invisible="state != 'draft'" />
             <button class="btn btn-primary" type="object" string="Finalizado" name="action_done"
               invisible="state != 'ongoing'" />
-            <button class="btn" type="object" string="Expulsado"
+            <button class="btn" confirm="¿Estás seguro que lo quieres marcar como Expulsado?" type="object" string="Expulsado"
               name="action_expelled"
               invisible="state != 'ongoing'" />
-            <button class="btn" type="object" string="Abandonado"
+            <button class="btn" type="object" confirm="¿Estás seguro que lo quieres marcar como Abandonado?" string="Abandonado"
               name="action_abandoned"
               invisible="state != 'ongoing'" />
             <button type="object" string="Volver a borrador" name="action_draft"
