@@ -1,7 +1,7 @@
 <odoo>
-    
+    <data>
         <menuitem id="menu_animals" name="Vet" />
         <menuitem id="menu_animals_list" name="Animals" parent="menu_animals"
             action="animals_action" />
-
+    </data>
 </odoo>
