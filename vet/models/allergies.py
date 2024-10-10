@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
-class Allergie(models.Model):
-    _name = "animal.allergie"
+class Allergy(models.Model):
+    _name = "animal.allergy"
     _description = "Animal allergies table"
 
     name = fields.Char(string="Allergies", required=True)

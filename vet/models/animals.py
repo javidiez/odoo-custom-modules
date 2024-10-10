@@ -13,17 +13,23 @@ class Animal(models.Model):
     ], string="Sex", default="male")
     birthdate = fields.Date(string="Birthdate")
     photo = fields.Binary(string="Photo")
-    breed = fields.Char(string="Breed")
-    species = fields.Many2one("animal.specie", string="Type", required=True)
+    breed = fields.Many2one("animal.breed", string="Breed")
+    species = fields.Many2one("animal.specie", string="Specie", required=True)
     owner = fields.Many2one('res.partner', string="Owner", required=True)
     weight = fields.Float(string="Weight")
     height = fields.Float(string="Height")
+    size = fields.Selection([
+        ('small', 'Small'),
+        ('medium', 'Medium'),
+        ('large', 'Large'),
+    ], string="Size", default='small')
     medicines = fields.Many2many("animal.medicine", string="Medicines", relation="animal_medicine_rel")
     vaccines = fields.Many2many("animal.vaccine", string="Vaccines", relation="animal_vaccine_rel")
     diseases = fields.Many2many("animal.disease", string="Diseases", relation="animal_disease_rel")
-    surgeries = fields.Many2many("animal.surgery", string="Surgeries", relation="animal_surgery_rel")
     allergies = fields.Many2many("animal.allergy", string="Allergies", relation="animal_allergy_rel")
-    visits = fields.Many2many("animals.visits", string="Visits")  # Asegúrate que esto es correcto en tu modelo
+    surgeries = fields.Many2many("animal.surgery", string="Surgeries", relation="animal_surgery_rel")
+    visits = fields.Many2many("animal.visit", string="Visits")
+    visit_date = fields.Date(related="visits.date", string="Visits")
     active = fields.Boolean(string="Active", default=True)
     tags = fields.Many2many("animal.tag", string="Tags", relation="animal_tag_rel")
-    insurance = fields.Many2many("animal.insurance", string="Insurance", relation="animal_insurance_rel")
+    insurance = fields.Many2one("animal.insurance", string="Insurance", relation="animal_insurance_rel")

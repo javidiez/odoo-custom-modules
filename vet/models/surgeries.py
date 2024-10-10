@@ -1,8 +1,8 @@
 from odoo import models, fields, api
 
-class Surgerie(models.Model):
-    _name = "animal.surgerie"
+class Surgery(models.Model):
+    _name = "animal.surgery"
     _description = "Animal surgeries table"
 
-    surgeries = fields.Char(string="Surgerie", required=True)
+    name = fields.Char(string="Surgery", required=True)
     observations = fields.Text(string="Observations")

@@ -24,6 +24,14 @@ Administrar los animales que visitan nuestra veterinaria
     'data': [
         'security/ir.model.access.csv',
         'views/animals_views.xml',
+        'views/medicines_views.xml',
+        'views/allergies_views.xml',
+        'views/surgeries_views.xml',
+        'views/vaccines_views.xml',
+        'views/insurances_views.xml',
+        'views/species_views.xml',
+        'views/breeds_views.xml',
+        'views/tags_views.xml',
         'views/animals_menus.xml',
     ],
     # only loaded in demonstration mode
