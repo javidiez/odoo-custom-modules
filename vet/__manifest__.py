@@ -29,10 +29,12 @@ Administrar los animales que visitan nuestra veterinaria
         'views/surgeries_views.xml',
         'views/vaccines_views.xml',
         'views/insurances_views.xml',
+        'views/visits_views.xml',
         'views/species_views.xml',
         'views/breeds_views.xml',
         'views/tags_views.xml',
         'views/animals_menus.xml',
+        'views/visit_sequence.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

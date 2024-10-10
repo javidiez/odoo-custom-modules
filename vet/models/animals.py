@@ -30,6 +30,7 @@ class Animal(models.Model):
     surgeries = fields.Many2many("animal.surgery", string="Surgeries", relation="animal_surgery_rel")
     visits = fields.Many2many("animal.visit", string="Visits")
     visit_date = fields.Date(related="visits.date", string="Visits")
+    visit_reference = fields.Char(related="visits.sequence", string="Visits")
     active = fields.Boolean(string="Active", default=True)
     tags = fields.Many2many("animal.tag", string="Tags", relation="animal_tag_rel")
     insurance = fields.Many2one("animal.insurance", string="Insurance", relation="animal_insurance_rel")

@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        
+        <record id="visit_tree_view" model="ir.ui.view">
+            <field name="name">animal.visit.tree.view</field>
+            <field name="model">animal.visit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                    <field name="animal"/>
+                    <field name="owner"/>
+                    <field name="reason"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="visit_form_view" model="ir.ui.view">
+            <field name="name">animal.visit.form.view</field>
+            <field name="model">animal.visit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field class="fs-1" name="sequence" />
+                            <group>
+                                <field name="animal" />
+                            </group>
+                            <group>
+                                <field name="owner" />
+                            </group>
+                            <group>
+                                <field name="reason" />
+                            </group>
+                            <group>
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="suggested_treatment" />
+                            </group>
+                            <group>
+                                <field name="observations" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field widget="mail_thread" name="message_ids" />
+                        <field widget="mail_activity" name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="visit_action" model="ir.actions.act_window">
+            <field name="name">Visits</field>
+            <field name="res_model">animal.visit</field>
+            <field name="view_mode">search,tree,form,kanban,pivot</field>
+        </record>
+    </data>
+</odoo>
