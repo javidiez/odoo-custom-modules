@@ -19,7 +19,18 @@
       <field name="name">animal.form.view</field>
       <field name="arch" type="xml">
         <form>
+          <header>
+            <!-- Botón para crear presupuesto -->
+            <button name="action_create_quote" type="object" string="Create Quote" class="btn-primary"
+                icon="fa-money"
+                />
+        </header>
           <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="action_view_quotes" type="object" class="oe_stat_button" icon="fa-money">
+                <field name="quote_count" widget="statinfo" string="Quotes" />
+              </button>
+            </div>
             <div class="d-flex justify-content-between">
               <div>
                 <label for="name" string="Name" />
@@ -62,6 +73,9 @@
               </page>
               <page string="Other information">
                 <group>
+                  <field name="sex" />
+                </group>
+                <group>
                   <field name="size" />
                 </group>
                 <div class="d-flex">
@@ -100,10 +114,44 @@
       </field>
     </record>
 
+    <record id="vet_kanban_view" model="ir.ui.view">
+      <field name="name">animal.kanban.view</field>
+      <field name="model">animal</field>
+      <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile" sample="1">
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div class="row">
+                  <div class="col-12">
+                    <strong>
+                      <div>
+                        <field name="name" /> (<field name="species" />) </div>
+                    </strong>
+                    <div> Owner: <field name="owner" />
+                    </div>
+
+                  </div>
+                </div>
+                <div>
+                  <hr class="my-2" />
+                    <strong>ID</strong>: <field name="identification" />
+                </div>
+                <div class="d-flex justify-content-between">
+                  <field name="sex" />
+                  <field name="activity_ids" widget="kanban_activity" />
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
     <record id="animals_action" model="ir.actions.act_window">
       <field name="name">Animals</field>
       <field name="res_model">animal</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,kanban</field>
     </record>
 
   </data>

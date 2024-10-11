@@ -5,7 +5,7 @@ class Visit(models.Model):
     _description = "Animals visits table"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    date = fields.Date(string="Date", required=True)
+    date = fields.Datetime(string="Date", required=True)
     animal = fields.Many2one("animal")
     name = fields.Char(related="animal.name", string="Animal", required=True, readonly=False)
     owner = fields.Many2one(related="animal.owner", string="Owner", required=True, readonly=False)

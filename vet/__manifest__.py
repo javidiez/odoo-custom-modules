@@ -33,8 +33,10 @@ Administrar los animales que visitan nuestra veterinaria
         'views/species_views.xml',
         'views/breeds_views.xml',
         'views/tags_views.xml',
+        'views/animal_partner_views.xml',
         'views/animals_menus.xml',
         'views/visit_sequence.xml',
+        'views/animals_identification.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
