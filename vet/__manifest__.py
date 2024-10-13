@@ -42,5 +42,6 @@ Manage the animals that visit our veterinarian
     'demo': [
         'demo/demo.xml',
     ],
+    "images": ['static/images/banner.png', 'static/description/icon.png'],
 }
 
