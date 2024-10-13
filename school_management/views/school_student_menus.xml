@@ -1,0 +1,26 @@
+<odoo>
+
+    <menuitem id="menu_school" name="School" />
+    <menuitem id="menu_student_list" name="Estudiantes" parent="menu_school"
+        action="student_action" />
+
+    <menuitem id="subjects_menu"
+        name="Materias"
+        action="subjects_action"
+        parent="menu_school"
+    />
+
+    <menuitem id="student_tag_menu"
+        name="Etiquetas"
+        action="student_tag_action"
+        parent="menu_school"
+        sequence="100"
+    />
+
+    <menuitem id="carreer_menu"
+        name="Carreras"
+        action="carreer_action"
+        parent="menu_school"
+    />
+
+</odoo>
