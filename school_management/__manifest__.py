@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Administración de academias educativas",
+    'name': "School academy management",
 
-    'summary': "Crea y gestiona estudiantes para tu academia",
+    'summary': "Create and manage students for your academy",
 
     'description': """
-Long description of module's purpose
+Create and manage students for your academy
     """,
 
     'author': "Javier Diez",
@@ -36,4 +36,5 @@ Long description of module's purpose
     'demo': [
         'demo/demo.xml',
     ],
+    "images": ['static/images/banner.png', 'static/description/icon.png'],
 }
