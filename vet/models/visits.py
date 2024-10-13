@@ -5,10 +5,10 @@ class Visit(models.Model):
     _description = "Animals visits table"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    animal_id = fields.Many2one('animal', string='Animal', required=True)  # Campo de relación Many2one con animal
     date = fields.Datetime(string="Date", required=True)
-    animal = fields.Many2one("animal")
-    name = fields.Char(related="animal.name", string="Animal", required=True, readonly=False)
-    owner = fields.Many2one(related="animal.owner", string="Owner", required=True, readonly=False)
+    name = fields.Char(related="animal_id.name", string="Animal", required=True, readonly=False)
+    owner = fields.Many2one(related="animal_id.owner", string="Owner", readonly=True, store=True)
     reason = fields.Text(string="Reason")
     suggested_treatment = fields.Text(string="Suggested treatment")
     observations = fields.Text(string="Observations")

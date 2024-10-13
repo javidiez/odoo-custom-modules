@@ -21,14 +21,23 @@
         <form>
           <header>
             <!-- Botón para crear presupuesto -->
-            <button name="action_create_quote" type="object" string="Create Quote" class="btn-primary"
-                icon="fa-money"
-                />
-        </header>
+            <button name="action_create_quote" type="object" string="Create Quote"
+              class="btn-primary"
+            />
+          </header>
           <sheet>
             <div class="oe_button_box" name="button_box">
-              <button name="action_view_quotes" type="object" class="oe_stat_button" icon="fa-money">
+              <button name="action_view_quotes" type="object" class="oe_stat_button"
+                icon="fa-dollar">
                 <field name="quote_count" widget="statinfo" string="Quotes" />
+              </button>
+              <button name="action_view_invoices" type="object" class="oe_stat_button"
+                icon="fa-money">
+                <field name="invoice_count" widget="statinfo" string="Invoices" />
+              </button>
+              <button name="action_view_visits" type="object" class="oe_stat_button"
+                icon="fa-building">
+                <field name="visit_count" widget="statinfo" string="Visits" />
               </button>
             </div>
             <div class="d-flex justify-content-between">
@@ -56,8 +65,27 @@
             </group>
             <notebook>
               <page string="Visits">
-                <field name="visits" />
+                <field name="visit_ids">
+                  <tree>
+                    <field name="sequence" />
+                    <field name="date" />
+                    <field name="reason" />
+                    <field name="suggested_treatment" />
+                    <field name="observations" />
+                  </tree>
+
+                  <form>
+                    <group>
+                      <field name="date" />
+                      <field name="reason" />
+                      <field name="suggested_treatment" />
+                      <field name="observations" />
+                    </group>
+                  </form>
+                </field>
               </page>
+
+
               <page string="Medicines">
                 <field name="medicines" />
 
@@ -73,35 +101,40 @@
               </page>
               <page string="Other information">
                 <group>
-                  <field name="sex" />
-                </group>
-                <group>
-                  <field name="size" />
-                </group>
-                <div class="d-flex">
                   <group>
-                    <field name="weight" string="Weight" />
+                    <field name="sex" />
                   </group>
-                  <span>Kg.</span>
-                </div>
+                  <group>
+                    <field name="size" />
+                  </group>
+                  <div class="d-flex">
+                    <group>
+                      <field name="weight" string="Weight" />
+                    </group>
+                    <span>Kg.</span>
+                  </div>
+                  <group>
+                    <field name="birthdate" />
+                  </group>
 
-                <div class="d-flex">
+                </group>
+                <group>
+                  <div class="d-flex">
+                    <group>
+                      <field name="height" string="Height" />
+                    </group>
+                    <span>Mts.</span>
+                  </div>
+
                   <group>
-                    <field name="height" string="Height" />
+                    <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}" />
                   </group>
-                  <span>Mts.</span>
-                </div>
-                <group>
-                  <field name="birthdate" />
-                </group>
-                <group>
-                  <field name="tags" widget="many2many_tags" options="{'color_field': 'color'}" />
-                </group>
-                <group>
-                  <field name="insurance" />
-                </group>
-                <group>
-                  <field name="active" />
+                  <group>
+                    <field name="insurance" />
+                  </group>
+                  <group>
+                    <field name="active" />
+                  </group>
                 </group>
               </page>
             </notebook>

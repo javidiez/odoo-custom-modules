@@ -7,7 +7,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="sequence"/>
-                    <field name="animal"/>
+                    <field name="animal_id"/>
                     <field name="owner"/>
                     <field name="reason"/>
                     <field name="date"/>
@@ -24,7 +24,7 @@
                         <group>
                             <field class="fs-1" name="sequence" />
                             <group>
-                                <field name="animal" />
+                                <field name="animal_id" />
                             </group>
                             <group>
                                 <field name="owner" />
