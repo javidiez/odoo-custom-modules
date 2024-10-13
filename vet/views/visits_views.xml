@@ -1,16 +1,16 @@
 <odoo>
     <data>
-        
+
         <record id="visit_tree_view" model="ir.ui.view">
             <field name="name">animal.visit.tree.view</field>
             <field name="model">animal.visit</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="sequence"/>
-                    <field name="animal_id"/>
-                    <field name="owner"/>
-                    <field name="reason"/>
-                    <field name="date"/>
+                    <field name="sequence" />
+                    <field name="animal_id" />
+                    <field name="owner" />
+                    <field name="reason" />
+                    <field name="date" />
                 </tree>
             </field>
         </record>
@@ -48,6 +48,42 @@
                         <field widget="mail_activity" name="activity_ids" />
                     </div>
                 </form>
+            </field>
+        </record>
+
+        <record id="animal_visit_kanban_view" model="ir.ui.view">
+            <field name="name">animal.visit.kanban.view</field>
+            <field name="model">animal.visit</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="sequence" />
+                                        </strong>
+                                        <div><strong> Animal</strong>: <field name="animal_id" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr
+                                    class="my-2" />
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <strong>Owner</strong>: <field
+                                            name="owner" />
+                                    </div>
+                                    <field
+                                        name="activity_ids"
+                                        widget="kanban_activity" />
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
             </field>
         </record>
 
