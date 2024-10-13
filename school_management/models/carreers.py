@@ -4,9 +4,9 @@ class Carreers(models.Model):
     _name = 'school.carreers'
     _description = "School carreers"
 
-    name = fields.Char(string="Nombre", required=True)
-    description = fields.Text(string="Descripción", readonly=False, store=True)
-    active = fields.Boolean(string="Activo", default=True)
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description", readonly=False, store=True)
+    active = fields.Boolean(string="Active", default=True)
     subjects = fields.Many2many('school.subjects')
 
     # @api.depends("description")

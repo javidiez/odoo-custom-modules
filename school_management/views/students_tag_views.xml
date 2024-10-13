@@ -38,7 +38,7 @@
         </record>
 
         <record id="student_tag_action" model="ir.actions.act_window">
-            <field name="name">Etiquetas</field>
+            <field name="name">Tags</field>
             <field name="res_model">school.tag</field>
             <field name="view_mode">tree,form</field>
         </record>

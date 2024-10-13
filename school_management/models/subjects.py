@@ -4,7 +4,7 @@ class Subjects(models.Model):
     _name = 'school.subjects'
     _description = "School subjects"
 
-    name = fields.Char(string="Nombre", required=True)
-    description = fields.Text(string="Descripción")
-    active = fields.Boolean(string="Activo", default=True)
-    carreer = fields.Many2many("school.carreers", string="Carrera")
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description")
+    active = fields.Boolean(string="Active", default=True)
+    carreer = fields.Many2many("school.carreers", string="Carreer")

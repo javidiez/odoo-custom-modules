@@ -9,42 +9,42 @@ class Student(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order ="name asc"
 
-    partner_id = fields.Many2one('res.partner', string="Nombre", required=True)
-    name = fields.Char(related='partner_id.name', string="Nombre", store=True)
-    alias = fields.Char(related='partner_id.alias', string="Apodo", store=True, readonly=False)
-    image = fields.Binary(related='partner_id.image_1920', string="Imagen", store=True)
-    phone = fields.Char(related='partner_id.phone', string="Teléfono", store=True)
-    mobile = fields.Char(related='partner_id.mobile', string="Móvil", store=True)
-    street = fields.Char(related='partner_id.street', string="Dirección", store=True)
-    city = fields.Char(related='partner_id.city', string="Ciudad", store=True)
-    country_id= fields.Many2one(related='partner_id.country_id', string="País", store=True)
-    state_id= fields.Many2one(related='partner_id.state_id', string="Provincia", store=True)
+    partner_id = fields.Many2one('res.partner', string="Name", required=True)
+    name = fields.Char(related='partner_id.name', string="Name", store=True)
+    alias = fields.Char(related='partner_id.alias', string="Alias", store=True, readonly=False)
+    image = fields.Binary(related='partner_id.image_1920', string="Image", store=True)
+    phone = fields.Char(related='partner_id.phone', string="Phone", store=True)
+    mobile = fields.Char(related='partner_id.mobile', string="Mobile", store=True)
+    street = fields.Char(related='partner_id.street', string="Street", store=True)
+    city = fields.Char(related='partner_id.city', string="City", store=True)
+    country_id= fields.Many2one(related='partner_id.country_id', string="Country", store=True)
+    state_id= fields.Many2one(related='partner_id.state_id', string="State", store=True)
     email = fields.Char(related='partner_id.email', string="Email", store=True)
-    zip = fields.Char(related='partner_id.zip', string="C.P.", store=True)
-    tuition = fields.Char(string="Matrícula", copy=False, tracking=20, required=True)
-    inscription_date = fields.Date(string="Fecha de inscripción")
-    carreers = fields.Many2one('school.carreers',string="Carrera", required=True)
+    zip = fields.Char(related='partner_id.zip', string="ZIP.", store=True)
+    tuition = fields.Char(string="Enrollment", copy=False, tracking=20, required=True)
+    inscription_date = fields.Date(string="Inscription Date")
+    carreers = fields.Many2one('school.carreers',string="Carreer", required=True)
     subjects = fields.Many2many('school.subjects')
-    course = fields.Char(string="Curso")
-    tag = fields.Many2many('school.tag', string="Etiquetas")
-    teacher = fields.Many2one('res.partner', string="Profesor")
+    course = fields.Char(string="Course")
+    tag = fields.Many2many('school.tag', string="Tags")
+    teacher = fields.Many2one('res.partner', string="Teacher")
     teacher_assistant = fields.Many2one('res.partner', string="Teacher assistant")
     modality = fields.Selection([
-                                        ('virtual', 'Virtual'),
-                                        ('insitu', 'Presencial'),
-                                        ], string="Modalidad", default="virtual")
-    estimated_graduate_date = fields.Date(string="Fecha estimada de gradución")
-    graduate_date = fields.Date(string="Fecha de gradución")
-    beca = fields.Char(string="Beca")
-    final_project = fields.Char(string="Proyecto final")
-    active = fields.Boolean(string="Activo", default=True)
+                                        ('virtual', 'Online'),
+                                        ('insitu', 'Face-to-face'),
+                                        ], string="Modality", default="virtual")
+    estimated_graduate_date = fields.Date(string="Estimated graduation date")
+    graduate_date = fields.Date(string="Graduation date")
+    beca = fields.Char(string="Scholarship")
+    final_project = fields.Char(string="Final project")
+    active = fields.Boolean(string="Active", default=True)
 
     state = fields.Selection([
-        ('draft', 'No iniciado'),
-        ('ongoing', 'Cursando'),
-        ('done', 'Finalizado'),
-        ('abandoned', 'Abandonado'),
-        ('expelled', 'Expulsado'),
+        ('draft', 'Not started'),
+        ('ongoing', 'Studiying'),
+        ('done', 'Finalized'),
+        ('abandoned', 'Abandoned'),
+        ('expelled', 'Expelled'),
     ], string='Status', default='draft', tracking=20)
 
     def action_ongoing(self):
@@ -83,8 +83,8 @@ class Student(models.Model):
     def _estimated_graduate_date_no_past(self):
         for record in self:
             if record.estimated_graduate_date < fields.Date.today():
-                raise ValidationError('La fecha no puede ser anterior a hoy')
+                raise ValidationError('The date cannot be earlier than today')
 
     _sql_constraints = [
-        ('check_tuition', 'UNIQUE(tuition)', 'La matrícula debe ser únicaaa')
+        ('check_tuition', 'UNIQUE(tuition)', 'The registration must be unique')
     ]
