@@ -36,5 +36,5 @@ Create and manage students for your academy
     'demo': [
         'demo/demo.xml',
     ],
-    "images": ['static/images/banner.png', 'static/description/icon.png'],
+    "images": ['static/images/banner.png'],
 }
