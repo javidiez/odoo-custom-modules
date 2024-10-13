@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Gestión veterinaria",
+    'name': "Veterinary management",
 
-    'summary': "Administrar los animales que visitan nuestra veterinaria",
+    'summary': "Manage the animals that visit our veterinarian",
 
     'description': """
-Administrar los animales que visitan nuestra veterinaria
+Manage the animals that visit our veterinarian
     """,
 
     'author': "Javier Diez",
