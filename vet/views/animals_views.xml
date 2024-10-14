@@ -1,10 +1,51 @@
 <odoo>
   <data>
+
+    <record id="vet_search_view" model="ir.ui.view">
+      <field name="name">animal.search.view</field>
+      <field name="model">animal</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" />
+          <field name="owner" />
+          <field name="breed" />
+          <field name="species" />
+          <field name="identification" />
+          <field name="tags" />
+          <field name="insurance" />
+          <field name="internal_notes" />
+          <group>
+            <filter name="visited" string="Visited" domain="[('visit_ids', '>' , '0')]" />
+            <filter name="surgeries" string="With surgeries" domain="[('surgeries', '>' , '0')]" />
+            <filter name="archived" string="Archived"
+              domain="[('active', '!=' , 'true')]" />
+
+
+          </group>
+          <group expand="0" string="Animal info">
+            <filter name="owner" string="Owner" domain="[('owner', '=' , 'self')]"
+              context="{'group_by':'owner'}" />
+            <filter name="breed" string="Breed" domain="[('breed','=','self')]"
+              context="{'group_by':'breed'}" />
+            <filter name="species" string="Specie" domain="[('species', '=' , 'self')]"
+              context="{'group_by':'species'}" />
+            <filter name="size" string="Size" domain="[('size', '=' , 'self')]"
+              context="{'group_by':'size'}" />
+            <filter name="sex" string="Sex" domain="[('sex', '=' , 'self')]"
+              context="{'group_by':'sex'}" />
+            <filter name="insurance" string="Insurance" domain="[('insurance', '=' , 'self')]"
+              context="{'group_by':'insurance'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
     <record id="vet_tree_view" model="ir.ui.view">
       <field name="model">animal</field>
       <field name="name">animal.tree.view</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="identification" />
           <field name="name" />
           <field name="owner" />
           <field name="breed" />
@@ -136,6 +177,12 @@
                     <field name="active" />
                   </group>
                 </group>
+                <div>
+                  <label for="internal_notes" string="Notes" />
+                  <div>
+                    <field name="internal_notes" />
+                  </div>
+                </div>
               </page>
             </notebook>
           </sheet>
@@ -184,7 +231,7 @@
     <record id="animals_action" model="ir.actions.act_window">
       <field name="name">Animals</field>
       <field name="res_model">animal</field>
-      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_mode">search,tree,form,kanban</field>
     </record>
 
   </data>
