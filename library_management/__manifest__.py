@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Veterinary management",
+    'name': "Library_management",
 
-    'summary': "Manage the animals that visit our veterinarian",
+    'summary': "Manage the entry and exit of books from a library",
 
     'description': """
-Manage the animals that visit our veterinarian
+Manage the entry and exit of books from a library
     """,
 
     'author': "Javier Diez",
     'website': "https://javierdiez.netlify.app/",
     'license': 'AGPL-3',
+
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Animals',
+    'category': 'Library Management',
     'version': '1.0',
 
     # any module necessary for this one to work correctly
@@ -23,20 +24,16 @@ Manage the animals that visit our veterinarian
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/animals_views.xml',
-        'views/medicines_views.xml',
-        'views/allergies_views.xml',
-        'views/surgeries_views.xml',
-        'views/vaccines_views.xml',
-        'views/insurances_views.xml',
-        'views/visits_views.xml',
-        'views/species_views.xml',
-        'views/breeds_views.xml',
+        'views/books_views.xml',
+        'views/reservations_views.xml',
+        'views/loans_views.xml',
+        'views/genres_views.xml',
+        'views/categories_views.xml',
+        'views/editorials_views.xml',
+        'views/authors_views.xml',
         'views/tags_views.xml',
-        'views/animal_partner_views.xml',
-        'views/animals_menus.xml',
-        'views/visit_sequence.xml',
-        'views/animals_identification.xml',
+        'views/book_menus.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -44,4 +41,3 @@ Manage the animals that visit our veterinarian
     ],
     "images": ['static/images/banner.png', 'static/description/icon.png'],
 }
-

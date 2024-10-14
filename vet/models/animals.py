@@ -6,6 +6,7 @@ class Animal(models.Model):
     _name = "animal"
     _description = "Animals table"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order ="identification desc"
 
     name = fields.Char(string="Name", required=True)
     sex = fields.Selection([
@@ -34,6 +35,7 @@ class Animal(models.Model):
     tags = fields.Many2many("animal.tag", string="Tags", relation="animal_tag_rel")
     insurance = fields.Many2one("animal.insurance", string="Insurance", relation="animal_insurance_rel")
     identification = fields.Char(string="ID", required=True, copy=False, readonly=True, index=True, default=lambda self: 'New')
+    internal_notes = fields.Text(string="Notes")
     quote_count = fields.Integer(string="Quotes", compute="_compute_quote_count")
     invoice_count = fields.Integer(string="Invoices", compute="_compute_invoice_count")
     visit_count = fields.Integer(string="Visits", compute="_compute_visit_count")
@@ -65,8 +67,8 @@ class Animal(models.Model):
     @api.depends('owner')
     def _compute_visit_count(self):
         for record in self:
-            if record.owner:
-                record.visit_count = self.env['animal.visit'].search_count([('owner', '=', record.owner.id)])
+            if record.id:
+                record.visit_count = self.env['animal.visit'].search_count([('animal_id', '=', record.id)])
             else:
                 record.visit_count = 0
 
@@ -98,14 +100,14 @@ class Animal(models.Model):
 
     def action_view_visits(self):
         # Obtener el ID del partner asociado
-        owner = self.owner.id
+        animal = self.id
 
         return {
             'name': 'Visits',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree,form',
             'res_model': 'animal.visit',
-            'domain': [('owner', '=', owner)],
+            'domain': [('animal_id', '=', animal)],
             'context': dict(self._context),
         }
 
