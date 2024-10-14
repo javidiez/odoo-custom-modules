@@ -1,6 +1,36 @@
 <odoo>
     <data>
 
+        <record id="animal_visit_search_view" model="ir.ui.view">
+            <field name="name">animal.visit.search.view</field>
+            <field name="model">animal.visit</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="owner" />
+                    <field name="sequence" />
+                    <field name="reason" />
+                    <field name="suggested_treatment" />
+                    <field name="observations" />
+                    <group expand="0" string="Visit info">
+                        <filter name="animal_id" string="Animal" domain="[('animal_id','=','self')]"
+                            context="{'group_by':'animal_id'}" />
+                        <filter name="owner" string="Owner" domain="[('owner', '=' , 'self')]"
+                            context="{'group_by':'owner'}" />
+                        <filter name="sex" string="Sex" domain="[('sex', '=' , 'self')]"
+                            context="{'group_by':'sex'}" />
+                        <filter name="specie" string="Specie" domain="[('specie', '=' , 'self')]"
+                            context="{'group_by':'specie'}" />
+                        <filter name="breed" string="Breed" domain="[('breed', '=' , 'self')]"
+                            context="{'group_by':'breed'}" />
+                        <field name="date" />
+                        <filter name="group_by_date" string="Date"
+                            context="{'group_by': 'date:month'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="visit_tree_view" model="ir.ui.view">
             <field name="name">animal.visit.tree.view</field>
             <field name="model">animal.visit</field>
