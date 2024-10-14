@@ -67,8 +67,8 @@ class Animal(models.Model):
     @api.depends('owner')
     def _compute_visit_count(self):
         for record in self:
-            if record.owner:
-                record.visit_count = self.env['animal.visit'].search_count([('owner', '=', record.owner.id)])
+            if record.id:
+                record.visit_count = self.env['animal.visit'].search_count([('animal_id', '=', record.id)])
             else:
                 record.visit_count = 0
 
@@ -100,14 +100,14 @@ class Animal(models.Model):
 
     def action_view_visits(self):
         # Obtener el ID del partner asociado
-        owner = self.owner.id
+        animal = self.id
 
         return {
             'name': 'Visits',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree,form',
             'res_model': 'animal.visit',
-            'domain': [('owner', '=', owner)],
+            'domain': [('animal_id', '=', animal)],
             'context': dict(self._context),
         }
 
