@@ -67,8 +67,8 @@ class Animal(models.Model):
     @api.depends('owner')
     def _compute_visit_count(self):
         for record in self:
-            if record.owner:
-                record.visit_count = self.env['animal.visit'].search_count([('owner', '=', record.owner.id)])
+            if record.id:
+                record.visit_count = self.env['animal.visit'].search_count([('animal_id', '=', record.id)])
             else:
                 record.visit_count = 0
 
@@ -90,7 +90,7 @@ class Animal(models.Model):
         partner_id = self.owner.id
 
         return {
-            'name': 'Quotes',
+            'name': 'Invoices',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree,form',
             'res_model': 'account.move',
@@ -100,19 +100,18 @@ class Animal(models.Model):
 
     def action_view_visits(self):
         # Obtener el ID del partner asociado
-        owner = self.owner.id
+        animal = self.id
 
         return {
             'name': 'Visits',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree,form',
             'res_model': 'animal.visit',
-            'domain': [('owner', '=', owner)],
+            'domain': [('animal_id', '=', animal)],
             'context': dict(self._context),
         }
 
     def action_create_quote(self):
-        """Abrir la vista de presupuesto con el dueño del animal predefinido"""
         # Asegurarse de que el animal tiene un dueño
         if not self.owner:
             raise UserError('This animal does not have an owner defined.')

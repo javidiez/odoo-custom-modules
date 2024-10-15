@@ -15,9 +15,9 @@
           <group expand="0" string="School info">
             <filter name="virtual_modality" string="Virtual"
               domain="[('modality', '=' , 'virtual')]" />
-            <filter name="insitu_modality" string="z"
+            <filter name="insitu_modality" string="Presencial"
               domain="[('modality', '=' , 'insitu')]" />
-            <filter name="insitu_modality" string="Archivados"
+            <filter name="archvied" string="Archivados"
               domain="[('active', '!=' , 'true')]" />
             <filter name="modality" string="Modalidad" domain="[('modality', '=' , 'self')]"
               context="{'group_by':'modality'}" />
