@@ -90,7 +90,7 @@ class Animal(models.Model):
         partner_id = self.owner.id
 
         return {
-            'name': 'Quotes',
+            'name': 'Invoices',
             'type': 'ir.actions.act_window',
             'view_mode': 'tree,form',
             'res_model': 'account.move',
@@ -112,7 +112,6 @@ class Animal(models.Model):
         }
 
     def action_create_quote(self):
-        """Abrir la vista de presupuesto con el dueño del animal predefinido"""
         # Asegurarse de que el animal tiene un dueño
         if not self.owner:
             raise UserError('This animal does not have an owner defined.')
