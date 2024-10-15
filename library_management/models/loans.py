@@ -15,5 +15,16 @@ class Loan(models.Model):
     phone = fields.Char(related="partner_id.phone", string="Phone")
     mobile = fields.Char(related="partner_id.mobile", string="Mobile")
     book_id = fields.Many2one("book", string="Book")
+    name = fields.Char(related="book_id.name", string="Book name")
     start_date = fields.Date(string="Start date")
     end_date = fields.Date(string="End date")
+    returned = fields.Boolean(string="Returned")
+    not_returned = fields.Boolean(compute="_compute_decoration")
+
+    @api.depends('returned', 'end_date')
+    def _compute_decoration(self):
+        for record in self:
+            if record.end_date:
+                record.not_returned = not record.returned and record.end_date <= fields.Date.today()
+            else:
+                record.not_returned = False

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Library_management",
+    'name': "Library management",
 
     'summary': "Manage the entry and exit of books from a library",
 

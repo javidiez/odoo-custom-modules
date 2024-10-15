@@ -1,15 +1,46 @@
 <odoo>
     <data>
 
+        <record id="loan_search_view" model="ir.ui.view">
+            <field name="name">book.loan.search.view</field>
+            <field name="model">book.loan</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="book_id" />
+                    <field name="partner_id" />
+                    <group>
+                        <filter name="loans" string="To be returned"
+                            domain="[('returned', '=' , False)]" />
+                    </group>
+                    <group>
+                        <filter name="book" string="Book" domain="[('book_id','=','self')]"
+                            context="{'group_by': 'book_id'}" />
+                        <filter name="partner_id" string="Contact"
+                            domain="[('partner_id','=','self')]"
+                            context="{'group_by': 'partner_id'}" />
+                        <group>
+                            <filter name="group_by_start_date" string="Start date"
+                                context="{'group_by': 'start_date:month'}" />
+                            <filter name="group_by_end_date" string="End date"
+                                context="{'group_by': 'end_date:month'}" />
+                        </group>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="loan_tree_view" model="ir.ui.view">
             <field name="name">book.loan.tree.view</field>
             <field name="model">book.loan</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree decoration-danger="not_returned">
                     <field name="book_id" />
                     <field name="partner_id" />
                     <field name="start_date" />
                     <field name="end_date" />
+                    <field name="returned" />
+                    <field name="not_returned" column_invisible="1" />
                 </tree>
             </field>
         </record>
@@ -34,6 +65,9 @@
                             </group>
                             <group>
                                 <field name="end_date" />
+                            </group>
+                            <group>
+                                <field name="returned" />
                             </group>
                         </group>
                         <notebook>
@@ -76,7 +110,7 @@
         <record id="loan_action" model="ir.actions.act_window">
             <field name="name">Loans</field>
             <field name="res_model">book.loan</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">search,tree,form</field>
         </record>
     </data>
 </odoo>

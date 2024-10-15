@@ -30,7 +30,7 @@ class Book(models.Model):
     image = fields.Binary(string="Image", store=True)
     tags = fields.Many2many("book.tag",string="Tags")
     loans = fields.One2many("book.loan",'book_id', string="Loans")
-    reservations = fields.Many2many("book.reservation", string="Reservations")
+    reservations = fields.One2many("book.reservation","book_id", string="Reservations")
     active = fields.Boolean(string="Active", default=True)
 
     def action_available(self):

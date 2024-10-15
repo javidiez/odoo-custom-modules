@@ -12,5 +12,5 @@ class Editorial(models.Model):
     country = fields.Many2one(related="name.country_id", string="Country")
     phone = fields.Char(related="name.phone", string="Phone")
     mobile = fields.Char(related="name.mobile", string="Mobile")
-    book_id = fields.Many2many("book", string="Book")
+    book_id = fields.One2many("book","editorial", string="Book")
     description = fields.Text(string="Description")

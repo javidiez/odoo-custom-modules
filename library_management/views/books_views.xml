@@ -13,6 +13,23 @@
           <field name="category" />
           <field name="editorial" />
           <field name="tags" />
+          <group>
+            <filter name="loans" string="No loans" domain="[('loans', '=' , False)]" />
+            <filter name="reservations" string="No reservations" domain="[('reservations', '=' , False)]" />
+            <filter name="archived" string="Archived"
+              domain="[('active', '!=' , 'true')]" />
+          </group>
+          <group expand="0" string="Book info">
+            <filter name="state" string="State" domain="[('state','=','self')]"
+              context="{'group_by':'state'}" />
+            <filter name="author" string="Author" domain="[('author', '=' , 'self')]"
+              context="{'group_by':'author'}" />
+            <filter name="editorial" string="Editorial" domain="[('editorial','=','self')]"
+              context="{'group_by':'editorial'}" />
+            <field name="published_date" />
+            <filter name="group_by_date" string="Published date"
+              context="{'group_by': 'published_date:month'}" />
+          </group>
         </search>
       </field>
     </record>
@@ -25,7 +42,8 @@
           <field name="name" />
           <field name="author" />
           <field name="editorial" />
-          <field name="genre" />
+          <field name="genre" widget="many2many_tags" />
+          <field name="state" />
         </tree>
       </field>
     </record>
@@ -84,10 +102,11 @@
             <notebook>
               <page string="Loans">
                 <field name="loans">
-                  <tree>
-                    <field name="partner_id" string="Contact"/>
-                    <field name="start_date" string="Start Date"/>
-                    <field name="end_date" string="End Date"/>
+                  <tree decoration-danger="not_returned">
+                    <field name="partner_id" string="Contact" />
+                    <field name="start_date" string="Start Date" />
+                    <field name="end_date" string="End Date" />
+                    <field name="not_returned" column_invisible="1" />
                   </tree>
                 </field>
               </page>
