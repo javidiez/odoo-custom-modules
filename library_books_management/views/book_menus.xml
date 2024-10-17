@@ -19,7 +19,7 @@
         sequence="3"
     />
 
-    <menuitem id="menu_management" name="Management" parent="menu_library" sequence="4" />
+    <menuitem id="menu_management" name="Configuration" parent="menu_library" sequence="4" />
 
     <menuitem id="menu_author_list" name="Authors" parent="menu_management"
         action="author_action" sequence="1" />

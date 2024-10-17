@@ -15,7 +15,8 @@
           <field name="tags" />
           <group>
             <filter name="loans" string="No loans" domain="[('loans', '=' , False)]" />
-            <filter name="reservations" string="No reservations" domain="[('reservations', '=' , False)]" />
+            <filter name="reservations" string="No reservations"
+              domain="[('reservations', '=' , False)]" />
             <filter name="archived" string="Archived"
               domain="[('active', '!=' , 'true')]" />
           </group>
@@ -88,7 +89,7 @@
                 <field name="isbn" />
               </group>
               <group>
-                <field name="editorial" />
+                <field name="editorial" options="{'no_create': True}" widget="many2one"/>
               </group>
             </group>
             <group>
@@ -108,10 +109,30 @@
                     <field name="end_date" string="End Date" />
                     <field name="not_returned" column_invisible="1" />
                   </tree>
+                  <form>
+                    <group>
+                      <field name="partner_id" />
+                      <field name="start_date" />
+                      <field name="end_date" />
+                      
+                    </group>
+                  </form>
                 </field>
               </page>
               <page string="Reservations">
-                <field name="reservations" />
+                <field name="reservations">
+                  <tree>
+                    <field name="partner_id" string="Contact" />
+                    <field name="date" string="Start Date" />
+                  </tree>
+                  <form>
+                    <group>
+                      <field name="partner_id" />
+                      <field name="date" />
+                    </group>
+                  </form>
+                  
+                </field>
               </page>
               <page string="Other information">
                 <group>

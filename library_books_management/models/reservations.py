@@ -15,6 +15,5 @@ class Reservation(models.Model):
     phone = fields.Char(related="partner_id.phone", string="Phone")
     mobile = fields.Char(related="partner_id.mobile", string="Mobile")
     book_id = fields.Many2one("book", string="Book")
-    name = fields.Char(related="book_id.name", string="Book name")
     date = fields.Date(string="Date")
     done = fields.Boolean(string="Done")

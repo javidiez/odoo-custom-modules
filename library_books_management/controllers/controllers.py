@@ -19,4 +19,3 @@
 #         return http.request.render('library_management.object', {
 #             'object': obj
 #         })
-

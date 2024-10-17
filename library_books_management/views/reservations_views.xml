@@ -101,7 +101,7 @@
         <record id="reservation_action" model="ir.actions.act_window">
             <field name="name">Reservations</field>
             <field name="res_model">book.reservation</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">search,tree,form</field>
         </record>
     </data>
 </odoo>
