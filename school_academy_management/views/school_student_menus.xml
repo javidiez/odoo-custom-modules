@@ -1,24 +1,24 @@
 <odoo>
 
     <menuitem id="menu_school" name="School" />
-    <menuitem id="menu_student_list" name="Estudiantes" parent="menu_school"
+    <menuitem id="menu_student_list" name="Students" parent="menu_school"
         action="student_action" />
 
     <menuitem id="subjects_menu"
-        name="Materias"
+        name="Subjects"
         action="subjects_action"
         parent="menu_school"
     />
 
     <menuitem id="student_tag_menu"
-        name="Etiquetas"
+        name="Tags"
         action="student_tag_action"
         parent="menu_school"
         sequence="100"
     />
 
     <menuitem id="carreer_menu"
-        name="Carreras"
+        name="Carreers"
         action="carreer_action"
         parent="menu_school"
     />

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Administración de academias educativas",
+    'name': "Educational academy management",
 
-    'summary': "Crea y gestiona estudiantes para tu academia",
+    'summary': "Create and manage students for your academy",
 
     'description': """
-Long description of module's purpose
+Create and manage students for your academy.
     """,
 
     'author': "Javier Diez",
-    'website': "https://javierdiez.netlify.app",
+    'website': "https://javierdiez.netlify.app/",
+    'license': 'AGPL-3',
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -21,7 +22,6 @@ Long description of module's purpose
     'depends': ['base','mail'],
 
     # always loaded
-    'imagens': ['static/description/icon.png'],
     'data': [
         'security/ir.model.access.csv',
         'views/school_student_views.xml',
@@ -35,5 +35,6 @@ Long description of module's purpose
     'demo': [
         'demo/demo.xml',
     ],
+    "images": ['static/images/banner.png', 'static/description/icon.png'],
 }
 

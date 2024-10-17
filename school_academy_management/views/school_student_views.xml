@@ -13,21 +13,21 @@
           <field name="teacher_assistant" />
           <field name="tag" />
           <group expand="0" string="School info">
-            <filter name="virtual_modality" string="Virtual"
+            <filter name="virtual_modality" string="Online"
               domain="[('modality', '=' , 'virtual')]" />
-            <filter name="insitu_modality" string="Presencial"
+            <filter name="insitu_modality" string="Insitu"
               domain="[('modality', '=' , 'insitu')]" />
-            <filter name="archvied" string="Archivados"
+            <filter name="archvied" string="Archives"
               domain="[('active', '!=' , 'true')]" />
-            <filter name="modality" string="Modalidad" domain="[('modality', '=' , 'self')]"
+            <filter name="modality" string="Modality" domain="[('modality', '=' , 'self')]"
               context="{'group_by':'modality'}" />
-            <filter name="carreers" string="Carrera" domain="[('carreers', '=' , 'self')]"
+            <filter name="carreers" string="Carreer" domain="[('carreers', '=' , 'self')]"
               context="{'group_by':'carreers'}" />
           </group>
           <group expand="0" string="School info">
-            <filter name="city" string="Ciudad" domain="[('city','=','self')]"
+            <filter name="city" string="City" domain="[('city','=','self')]"
               context="{'group_by':'city'}" />
-            <filter name="state_id" string="Provincia" domain="[('state_id', '=' , 'self')]"
+            <filter name="state_id" string="State" domain="[('state_id', '=' , 'self')]"
               context="{'group_by':'state_id'}" />
           </group>
         </search>
@@ -56,18 +56,18 @@
 
         <form>
           <header>
-            <button class="btn btn-primary" type="object" string="Cursando"
+            <button class="btn btn-primary" type="object" string="Ongoing"
               name="action_ongoing"
               invisible="state != 'draft'" />
             <button class="btn btn-primary" type="object" string="Finalizado" name="action_done"
               invisible="state != 'ongoing'" />
-            <button class="btn" confirm="¿Estás seguro que lo quieres marcar como Expulsado?" type="object" string="Expulsado"
+            <button class="btn" confirm="Are you sure you want to mark it as Expelled?" type="object" string="Expelled"
               name="action_expelled"
               invisible="state != 'ongoing'" />
-            <button class="btn" type="object" confirm="¿Estás seguro que lo quieres marcar como Abandonado?" string="Abandonado"
+            <button class="btn" type="object" confirm="Are you sure you want to mark it as Abandoned?" string="Abandoned"
               name="action_abandoned"
               invisible="state != 'ongoing'" /> 
-            <button type="object" string="Volver a borrador" name="action_draft"
+            <button type="object" string="Back to Not started" name="action_draft"
               invisible="state not in ('done','expelled','abandoned')" />
             <field widget="statusbar" readonly="0" name="state"
               statusbar_visible="draft, ongoing, done, abandoned, expelled" />
@@ -91,7 +91,7 @@
               </group>
               <group>
                 <field name="course" readonly="state in 'done'"
-                  help="Completa solo el número del curso" />
+                  help="Complete only the course number" />
               </group>
               <group>
                 <field name="carreers" readonly="state in 'done'" />
@@ -102,7 +102,7 @@
 
             </group>
             <notebook>
-              <page string="Datos personales">
+              <page string="Personal data">
                 <group>
 
                   <group>
@@ -120,26 +120,26 @@
                   </group>
                 </group>
               </page>
-              <page string="Materias">
+              <page string="Subjects">
                 <field name="subjects" />
                 <!-- <button type="object" class="btn btn-danger" string="Hola como andas capo"
                   name="action_hola_como_andas" /> -->
               </page>
-              <page string="Profesores">
+              <page string="Teachers">
                 <group>
                   <field name="teacher" />
                   <field name="teacher_assistant" />
                 </group>
               </page>
-              <page string="Más información">
+              <page string="Other information">
                 <group>
-                  <field name="inscription_date" string="Fecha de inscripción" />
+                  <field name="inscription_date" string="Inscription date" />
                 </group>
                 <group>
                   <field name="graduate_date" />
                 </group>
                 <group>
-                  <field name="final_project" string="Proyecto final" />
+                  <field name="final_project" string="Final project" />
                 </group>
                 <group>
                   <field name="tag" widget="many2many_tags" readonly="state in 'done'"
@@ -185,7 +185,7 @@
                 </div>
                 <div>
                   <hr class="my-2" />
-                    <strong>Matrícula</strong>: <field name="tuition" />
+                    <strong>Enrollment</strong>: <field name="tuition" />
                 </div>
                 <div>
                   <field name="city" />, <field name="state_id" />, <field name="country_id" />  

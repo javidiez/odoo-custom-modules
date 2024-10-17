@@ -9,7 +9,7 @@
                 <!-- Insertar el campo "Apodo" después del campo "Nombre" -->
                 <xpath expr="//field[@name='category_id']" position="after">
 
-                        <field class="fs-5" name="alias" string="Apodo" />
+                        <field class="fs-5" name="alias" string="Alias" />
                    
                 </xpath>
             </field>

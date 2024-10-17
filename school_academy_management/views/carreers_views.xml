@@ -34,7 +34,7 @@
                             <field name="active" />
                         </group>
                         <notebook>
-                            <page string="Materias">
+                            <page string="Subjects">
                                 <field name="subjects"/>
                             </page>
                         </notebook>
