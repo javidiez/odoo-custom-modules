@@ -30,5 +30,7 @@ Add the Company Social Media
     'demo': [
         'demo/demo.xml',
     ],
+    "images": ['static/images/banner.png', 'static/description/icon.png'],
+
 }
 
