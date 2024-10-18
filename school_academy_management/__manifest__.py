@@ -36,5 +36,8 @@ Create and manage students for your academy.
         'demo/demo.xml',
     ],
     "images": ['static/images/banner.png', 'static/description/icon.png'],
+    'installable': True,
+    'application': True,  # Esto indica que tu módulo es una aplicación.
+    'auto_install': False,
 }
 
