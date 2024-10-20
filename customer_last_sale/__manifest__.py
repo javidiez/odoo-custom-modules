@@ -19,7 +19,7 @@ Show the customer's last sale date and the sale order"
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale'],
+    'depends': ['base', 'sale_management'],
 
     # always loaded
     'data': [
