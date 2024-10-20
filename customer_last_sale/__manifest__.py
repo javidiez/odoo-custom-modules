@@ -2,7 +2,7 @@
 {
     'name': "Customer last sale",
 
-    'summary': "Show the customer last sale date and the sale order",
+    'summary': "Show the customer last sale date and the related sale order",
 
     'description': """
 Show the customer last sale date and the related sale order
