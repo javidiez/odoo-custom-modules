@@ -9,7 +9,7 @@
               <xpath expr="//field[@name='property_product_pricelist']" position="after">
 
                       <field name="last_sale_order_date" string="Last sale order date" />
-                      <field name="sale_order_id" string="Sale order" />
+                      <field name="sale_order_id" string="Last sale order" />
                  
               </xpath>
           </field>
