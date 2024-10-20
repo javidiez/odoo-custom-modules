@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Customer last sale",
+    'name': "Customer's last sale",
 
     'summary': "Show the customer's last sale date and the sale order",
 
