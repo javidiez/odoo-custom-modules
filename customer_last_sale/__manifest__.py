@@ -2,10 +2,10 @@
 {
     'name': "Customer last sale",
 
-    'summary': "Show the customer last sale date and the related sale order",
+    'summary': "Show the customer's last sale date and the sale order",
 
     'description': """
-Show the customer last sale date and the related sale order
+Show the customer's last sale date and the sale order"
     """,
 
     'author': "Javier Diez",
