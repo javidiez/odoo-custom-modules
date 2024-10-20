@@ -4,10 +4,11 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.model
-    def create(self, vals):
-        order = super(SaleOrder, self).create(vals)
-        order.partner_id.write({
-            'last_sale_order_date': fields.Datetime.now(),  # Cambiado a Datetime para guardar fecha y hora
-            'sale_order_id': order.id
+    def action_confirm(self):
+        res = super(SaleOrder, self).action_confirm()
+        for order in self:
+            order.partner_id.write({
+                'last_sale_order_date': fields.Datetime.now(),  # Cambiado a Datetime para guardar fecha y hora
+                'sale_order_id': order.id
         })
-        return order
+        return res
