@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+
+    <record id="calendar_meeting_room_tree" model="ir.ui.view">
+      <field name="name">calendar.meeting.room.tree</field>
+      <field name="model">calendar.meeting.room</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="capacity" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="calendar_meeting_room_form" model="ir.ui.view">
+      <field name="name">calendar.meeting.room.form</field>
+      <field name="model">calendar.meeting.room</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name" />
+            </group>
+            <group>
+              <field name="capacity" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="room_action" model="ir.actions.act_window">
+      <field name="name">Rooms</field>
+      <field name="res_model">calendar.meeting.room</field>
+      <field name="view_mode">tree,form</field>
+      <!-- <field name="context">{}</field> -->
+    </record>
+
+  </data>
+</odoo>
