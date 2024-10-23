@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Purchas line notes",
+    'name': "Purchase order line notes",
 
     'summary': "Add notes to the purchase order lines",
 
