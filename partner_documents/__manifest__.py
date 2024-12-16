@@ -16,7 +16,7 @@
     'license': 'AGPL-3',
     'category': 'Contacts',
     'version': '18.0',
-    'depends': ['base','mail','contacts'],
+    'depends': ['base','contacts'],
     'installable': True,
     'application': False,
     'auto_install': False,
