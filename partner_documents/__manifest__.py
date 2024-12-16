@@ -3,11 +3,11 @@
 {
     'name': "Partner documents",
 
-    'summary': """Add documents to partners""",
+    'summary': """Module to attach files to Contacts. Each file can have a name and be downloaded from the form view of each contact.""",
 
     'description': """
         
-        Add documents to partners
+        Module to attach files to Contacts. Each file can have a name and be downloaded from the form view of each contact.
         
     """,
 
