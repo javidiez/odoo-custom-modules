@@ -12,6 +12,8 @@
     """,
 
     'author': "Javier Diez",
+    'website': "https://javierdiez.netlify.app/",
+    'license': 'AGPL-3',
     'category': 'Contacts',
     'version': '18.0',
     'depends': ['base','mail','contacts'],
@@ -22,5 +24,5 @@
         'security/ir.model.access.csv',
         'views/documents_views.xml',
     ],
-    "images": ['static/src/img/banner.png', 'static/description/icon.png'],
+    "images": ['static/src/img/banner.jpg', 'static/description/icon.png'],
 }
