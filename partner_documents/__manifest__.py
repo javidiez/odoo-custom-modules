@@ -22,7 +22,9 @@
     'auto_install': False,
     'data': [
         'security/ir.model.access.csv',
+        'views/partner_documents_views.xml',
         'views/documents_views.xml',
+        'views/documents_menu.xml',
     ],
     "images": ['static/src/img/banner.jpg', 'static/description/icon.png'],
 }
