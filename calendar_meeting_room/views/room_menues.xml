@@ -1,0 +1,10 @@
+<odoo>
+
+    <menuitem id="room_menu"
+        name="Rooms"
+        action="room_action"
+        parent="calendar.calendar_menu_config"
+        sequence="60"
+    />
+
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+
+    <record id="calendar_meeting_room_list" model="ir.ui.view">
+      <field name="name">calendar.meeting.room.list</field>
+      <field name="model">calendar.meeting.room</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name" />
+          <field name="capacity" />
+          <field name="location" />
+        </list>
+      </field>
+    </record>
+
+    <record id="calendar_meeting_room_form" model="ir.ui.view">
+      <field name="name">calendar.meeting.room.form</field>
+      <field name="model">calendar.meeting.room</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name" />
+            </group>
+            <group>
+              <field name="capacity" />
+            </group>
+            <group>
+              <field name="location" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="room_action" model="ir.actions.act_window">
+      <field name="name">Rooms</field>
+      <field name="res_model">calendar.meeting.room</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+  </data>
+</odoo>
