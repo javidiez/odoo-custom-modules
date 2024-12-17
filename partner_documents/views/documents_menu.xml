@@ -1,0 +1,6 @@
+<odoo>
+    <data>
+          <menuitem id="menu_partner_document_list" name="Documents" parent="contacts.menu_contacts"
+            action="partner_document_action" sequence="1"/>
+    </data>
+</odoo>
